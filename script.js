@@ -283,3 +283,19 @@ function formatMatchLabel(match) {
   const playoffPart = match.playoffs === "1" ? "Playoffs " : "";
   return `${match.year} ${leagueDisplay}${splitPart}<br><span style="color:#555; font-size:0.75rem;">${playoffPart}(${match.date})</span>`;
 }
+
+// 모바일 터치 툴팁
+document.addEventListener("click", (e) => {
+  const wrap = e.target.closest(".tooltip-wrap");
+
+  // 툴팁 밖 클릭 시 모두 닫기
+  document.querySelectorAll(".tooltip-wrap").forEach(el => {
+    el.classList.remove("tooltip-active");
+  });
+
+  // 툴팁 클릭 시 토글
+  if (wrap) {
+    wrap.classList.add("tooltip-active");
+    e.stopPropagation();
+  }
+});
