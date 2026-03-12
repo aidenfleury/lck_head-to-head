@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이 팀이랑 상성 어떰? | LCK 팀 맞대결 비교</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1 class="hero-title">이 팀이랑 상성 어떰?</h1>
+      <p class="hero-sub">
+        두 팀간 맞대결을 
+        <span class="tooltip-wrap">경쟁 지수
+          <span class="tooltip-box">
+            <strong style="text-decoration: underline;">각 세트의 인게임 양상을 바탕으로 산출한 수치</strong><br>
+            50에 가까울수록 치열한 접전을, 0 또는 100에 가까울수록 일방적인 경기를 의미합니다.
+          </span>
+        </span>
+        로 확인해보세요.</p>
+    </div>
+
+
+    <div class="team-selector">
+
+      <div class="team-column">
+        <label for="team-x">팀1 (기준)</label>
+        <select id="team-x">
+          <option value="">팀을 선택하세요</option>
+        </select>
+      </div>
+
+      <div class="team-column">
+        <label for="team-y">팀2</label>
+        <select id="team-y">
+          <option value="">팀을 선택하세요</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button id="search-btn">맞대결 보기</button>
+
+    <div id="results"></div>
+
+    <footer class="footer">
+      <p>2024~2026 경기 데이터 출처 : <a href="https://oracleselixir.com" target="_blank">Oracle's Elixir</a></p>
+      <p>LCK · KeSPA Cup · 국제 대회 포함</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

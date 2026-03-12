@@ -1,0 +1,170 @@
+/* ── Reset & Base ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f0f0f;
+  color: #e0e0e0;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-title {
+  font-size: 2.00rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: #ffffff;
+  word-break: keep-all; /* 단어 단위로 줄바꿈 */
+  letter-spacing: 0.05em;
+}
+
+.hero-sub {
+  font-size: 0.95rem;
+  color: #8a8a8a;
+  word-break: keep-all;
+  line-height: 1.6;
+}
+
+
+/* ── Two-Column Selector ── */
+.team-selector {
+  display: flex;
+  gap: 12px;
+}
+
+.team-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+
+select {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+/* ── Search Button ── */
+#search-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #e0e0e0;
+  color: #0f0f0f;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.00rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+}
+
+#search-btn:hover {
+  background-color: #ffffff;
+}
+
+/* ── Results Area ── */
+#results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tooltip-wrap {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  border-bottom: 1px dashed #555;
+}
+
+.tooltip-wrap .tooltip-box {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  width: 250px;
+  background-color: #1e1e1e;
+  color: #ccc;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.6;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px 12px;
+
+  position: absolute;
+  top: 130%;
+  bottom: auto;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.tooltip-wrap:hover .tooltip-box {
+  visibility: visible;
+  opacity: 1;
+}
+
+.footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid #1f1f1f;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer p {
+  font-size: 0.75rem;
+  color: #444;
+}
+
+.footer a {
+  color: #555;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #888;
+}
