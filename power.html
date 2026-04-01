@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전투력이란?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #e0e0e0;
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+
+    .info-page {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: #141414;
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .info-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .info-sub {
+      font-size: 0.95rem;
+      color: #8a8a8a;
+      line-height: 1.6;
+    }
+
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-section h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f2f2f2;
+    }
+
+    .info-section p,
+    .info-section li {
+      font-size: 0.95rem;
+      color: #cfcfcf;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .info-section ul {
+      padding-left: 18px;
+    }
+
+    .formula-box {
+      background: #101010;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      color: #f5f5f5;
+      line-height: 1.8;
+    }
+
+    .back-link {
+      display: inline-block;
+      width: fit-content;
+      color: #cfcfcf;
+      text-decoration: underline;
+      font-size: 0.92rem;
+    }
+
+    .back-link:hover {
+      color: #ffffff;
+    }
+
+      /* ── 탭 래퍼 ── */
+  .var-tabs { display:flex; flex-direction:column; gap:0; margin-top:12px; }
+ 
+  .var-tab-list { display:flex; gap:4px; flex-wrap:wrap; }
+ 
+  .var-tab-btn {
+    background:#1a1a1a; border:1px solid #2a2a2a; border-bottom:none;
+    border-radius:8px 8px 0 0; padding:9px 14px; font-size:0.82rem;
+    font-weight:600; color:#6a6a6a; cursor:pointer;
+    transition:background 0.15s, color 0.15s;
+    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+    white-space:nowrap; position:relative; bottom:-1px; letter-spacing:-0.01em;
+  }
+  .var-tab-btn:hover { color:#c0c0c0; background:#1f1f1f; }
+  .var-tab-btn.active { background:#101010; border-color:#2a2a2a; border-bottom-color:#101010; color:#fff; }
+ 
+  .var-tab-btn .tab-num {
+    display:inline-block; width:18px; height:18px; line-height:18px;
+    text-align:center; border-radius:4px; background:#2a2a2a;
+    font-size:0.72rem; margin-right:6px; color:#888;
+    transition:background 0.15s, color 0.15s;
+  }
+  .var-tab-btn.active .tab-num { background:#3a6fff22; color:#6a9eff; }
+  
+  .var-tab-btn.tab-green.active .tab-num {
+    background: #6adf8a22;
+    color: #6adf8a;
+  }
+ 
+  .var-tab-panels {
+    border:1px solid #2a2a2a; border-radius:0 8px 8px 8px;
+    background:#101010; padding:22px 20px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+ 
+  .var-panel { display:none; flex-direction:column; gap:14px; animation:vFadeIn 0.18s ease; }
+  .var-panel.active { display:flex; }
+ 
+  @keyframes vFadeIn {
+    from { opacity:0; transform:translateY(4px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+ 
+  .var-panel-title { font-size:1rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px; }
+  .var-panel-title .badge {
+    font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:20px;
+    background:#1e3a6e44; color:#6a9eff; border:1px solid #3a6fff33; letter-spacing:0.02em;
+  }
+  .var-panel-title .badge.green { background:#1a3a1a44; color:#6adf8a; border-color:#3aff6633; }
+ 
+  .var-panel-desc { font-size:0.90rem; color:#b0b0b0; line-height:1.8; word-break:keep-all; }
+ 
+  .var-formula-box {
+    background:#0d0d0d; border:1px solid #2a2a2a; border-radius:8px;
+    padding:14px 16px; font-size:0.9rem; color:#e0e0e0; line-height:1.85;
+  }
+  .var-formula-box .formula-main { color:#c8deff; font-weight:600; font-size:0.93rem; }
+  .var-formula-box .formula-note { color:#666; font-size:0.82rem; margin-top:4px; }
+ 
+  .var-graph-wrap {
+    padding:0px 16px ; overflow-x:auto;
+  }
+  .var-graph-wrap svg text { font-family:'Pretendard','Apple SD Gothic Neo',sans-serif; }
+ 
+  .var-example-table { width:100%; border-collapse:collapse; font-size:0.87rem; }
+  .var-example-table th {
+    color:#666; font-weight:600; font-size:0.8rem; text-align:left;
+    padding:6px 10px; border-bottom:1px solid #222;
+  }
+  .var-example-table td { color:#c0c0c0; padding:7px 10px; border-bottom:1px solid #1a1a1a; }
+  .var-example-table td.score { color:#6a9eff; font-weight:700; }
+  .var-example-table td.capped { color:#ff6b6b; font-weight:700; }
+ 
+  .var-divider { border:none; border-top:1px solid #1f1f1f; margin:8px 0; }
+  </style>
+</head>
+<body>
+  <main class="info-page">
+    <a href="index.html" class="back-link">← 돌아가기</a>
+
+    <section class="info-card">
+      <div class="info-title">전투력이란?</div>
+      <div class="info-sub">
+        전투력은 세트 내용을 한눈에 비교하기 위한 요약 지표입니다. 
+        양 팀의 점수 차이가 클수록 경기 내용의 우세가 더 뚜렷했음을 의미합니다.
+      </div>
+
+      <div class="info-section">
+        <h2>계산 방식</h2>
+        <div class="formula-box">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:14px; color:#e0e0e0; line-height:1;">
+
+            <span style="font-size:14px; color: #b0b0b0;; white-space:nowrap;">이긴팀 전투력 = 50 +</span>
+            <span style="width:100%; display:block;"></span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:#101010; border:1px solid #2a2a2a; border-radius:10px; padding:6px 10px; flex-wrap:wrap;">
+
+              <span style="background:#0c1e3a; color:#6a9eff; border:1px solid #1e3a6e; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:600; white-space:nowrap;">지역 장악력</span>
+              <span style="color:#444; font-size:15px;">+</span>
+              <span style="background:#0c1e3a; color:#6a9eff; border:1px solid #1e3a6e; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:600; white-space:nowrap;">최종 골드 격차</span>
+              <span style="color:#444; font-size:15px;">+</span>
+              <span style="background:#0c1e3a; color:#6a9eff; border:1px solid #1e3a6e; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:600; white-space:nowrap;">중반전 골드 주도권</span>
+
+            </span>
+
+            <span style="color:#444; font-size:15px;">×</span>
+
+            <span style="background:#0e2210; color:#6adf8a; border:1px solid #1e4a1e; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:600; white-space:nowrap;">시간 가중치</span>
+
+          </div>
+
+          <div style="margin-top:10px; font-size:0.82rem; color:#555;">
+            ※ 이긴팀 전투력은 최대 100점이며, 올림하여 정수로 표시됩니다.&nbsp; 진팀 전투력 = 100 − 이긴팀 전투력
+          </div>
+        </div>
+      </div>
+
+        <div class="var-tabs">
+        <div class="var-tab-list" role="tablist">
+            <button class="var-tab-btn active" onclick="switchVarTab(0)" role="tab">
+            <span class="tab-num">1</span>지역 장악력
+            </button>
+            <button class="var-tab-btn" onclick="switchVarTab(1)" role="tab">
+            <span class="tab-num">2</span>최종 골드 격차
+            </button>
+            <button class="var-tab-btn" onclick="switchVarTab(2)" role="tab">
+            <span class="tab-num">3</span>중반전 골드 주도권
+            </button>
+            <button class="var-tab-btn tab-green" onclick="switchVarTab(3)" role="tab">
+            <span class="tab-num">4</span>시간 가중치
+            </button>
+        </div>
+        
+        <div class="var-tab-panels">
+        
+            <!-- ── 패널 1: 지역 장악력 점수 ── -->
+            <div class="var-panel active" id="vpanel-0">
+            <div class="var-panel-title">
+                지역 장악력 점수
+                <span class="badge">최대 20점</span>
+            </div>
+        
+            <p class="var-panel-desc">
+                세트가 끝났을 때 양 팀의 <strong style="color:#e0e0e0">'타워 차이'</strong>를 측정합니다. 지역 장악과 관련 없는 쌍둥이 타워는 배제합니다.
+            </p>
+        
+            <div class="var-formula-box">
+                <div class="formula-main" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                지역 장악력 점수 =
+                    <span style="display:inline-flex; flex-direction:column; align-items:center; font-size:0.85em; line-height:1.4;">
+                        <span>(이긴팀이 파괴한 타워 수 − 진팀이 파괴한 타워 수 − 2)</span>
+                        <span style="border-top:1px solid currentColor; width:100%; display:block;"></span>
+                        <span>(전체 파괴된 타워 수의 합 – 2)</span>
+                    </span>
+                    × 20
+                </div>
+                <div class="formula-note">결과가 음수이면 0점, 최대 20점</div>
+            </div>
+
+            <!-- 히트맵 (JS 렌더링) -->
+            <div class="var-graph-wrap">
+                <svg id="regional-heatmap" width="100%"></svg>
+            </div>
+        
+        
+            <div class="var-formula-box">
+                <div style="color:#777; font-size:0.82rem; margin-bottom:8px;">[계산 예시]</div>
+                <table class="var-example-table">
+                <thead>
+                    <tr><th>이긴팀 타워 (–2)</th><th>진팀 타워</th><th>차이</th><th>합</th><th>점수</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span style = "color: #797979;">8</span> (6)</td><td>9</td><td>–3</td><td>15</td><td class="score">0점 (하한)</td></tr>
+                    <tr><td><span style = "color: #797979;">10</span> (8)</td><td>2</td><td>+6</td><td>10</td><td class="score">12점</td></tr>
+                    <tr><td><span style = "color: #797979;">9</span> (7)</td><td>0</td><td>+7</td><td>7</td><td class="score">20점</td></tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        
+            <!-- ── 패널 2: 최종 골드 격차 점수 ── -->
+            <div class="var-panel" id="vpanel-1">
+            <div class="var-panel-title">
+                최종 골드 격차 점수
+                <span class="badge">최대 20점</span>
+            </div>
+        
+            <p class="var-panel-desc">
+                세트 종료 시점의 <strong style="color:#e0e0e0">'획득' 골드 차이 비율</strong>을 반영합니다. 시간만 지나면 자동으로 쌓이는 골드는 배제합니다.
+            </p>
+        
+            <div class="var-formula-box">
+                <div class="formula-main" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                최종 골드 격차 점수 =
+                    <span style="display:inline-flex; flex-direction:column; align-items:center; font-size:0.85em; line-height:1.4;">
+                        <span>(이긴팀 획득 골드 − 진팀 획득 골드)</span>
+                        <span style="border-top:1px solid currentColor; width:100%; display:block;"></span>
+                        <span>(전체 획득 골드 합)</span>
+                    </span>
+                    × 100
+                </div>
+                <div class="formula-note">결과가 음수이면 0점, 최대 20점</div>
+            </div>
+        
+            <div class="var-formula-box">
+                <div style="color:#777; font-size:0.82rem; margin-bottom:8px;">[계산 예시]</div>
+                <table class="var-example-table">
+                <thead>
+                    <tr><th>이긴팀 획득 골드</th><th>진팀 획득 골드</th><th>비율 차이</th><th>점수</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>53,000</td><td>55,000</td><td>–2.4%</td><td class="score">0점 (하한)</td></tr>
+                    <tr><td>47,000</td><td>40,000</td><td>8.0%</td><td class="score">8.0점</td></tr>
+                    <tr><td>35,000</td><td>22,000</td><td>22.8%</td><td class="score">20점 (상한)</td></tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        
+            <!-- ── 패널 3: 중반전 골드 주도권 점수 ── -->
+            <div class="var-panel" id="vpanel-2">
+            <div class="var-panel-title">
+                중반전 골드 주도권 점수
+                <span class="badge">최대 10점</span>
+            </div>
+        
+            <p class="var-panel-desc">
+                <strong style="color:#e0e0e0">25분 시점의 골드 차이</strong>로 중반 흐름을 측정합니다.
+            </p>
+        
+            <div class="var-formula-box">
+                <div class="formula-main">중반전 골드 주도권 점수 = 25분 골드 차이 ÷ 500</div>
+                <div class="formula-note">결과가 음수이면 0점, 최대 10점</div>
+            </div>
+        
+            <div class="var-graph-wrap">
+                <svg viewBox="0 0 420 190" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <line x1="54" y1="18" x2="54" y2="148" stroke="#2a2a2a" stroke-width="1"/>
+                <line x1="54" y1="148" x2="400" y2="148" stroke="#2a2a2a" stroke-width="1"/>
+                <line x1="54" y1="83" x2="400" y2="83" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,3"/>
+                <line x1="54" y1="18" x2="400" y2="18" stroke="#1f2f4c" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="46" y="152" fill="#555" font-size="11" text-anchor="end">0</text>
+                <text x="46" y="87"  fill="#555" font-size="11" text-anchor="end">5</text>
+                <text x="46" y="22"  fill="#6a9eff" font-size="11" text-anchor="end">10</text>
+                <text x="54"  y="164" fill="#555" font-size="10" text-anchor="middle">0</text>
+                <text x="140" y="164" fill="#555" font-size="10" text-anchor="middle">2,500</text>
+                <text x="227" y="164" fill="#555" font-size="10" text-anchor="middle">5,000</text>
+                <text x="314" y="164" fill="#555" font-size="10" text-anchor="middle">7,500</text>
+                <text x="400" y="164" fill="#555" font-size="10" text-anchor="middle">10,000+</text>
+                <text x="227" y="180" fill="#555" font-size="10" text-anchor="middle">25분 골드 차이</text>
+                <!-- 5,000골드에서 상한 도달 → x=227 -->
+                <line x1="54" y1="148" x2="227" y2="18" stroke="#6a9eff" stroke-width="2"/>
+                <line x1="227" y1="18" x2="400" y2="18" stroke="#6a9eff" stroke-width="2"/>
+                <circle cx="54"  cy="148" r="3.5" fill="#6a9eff"/>
+                <circle cx="140" cy="83"  r="3.5" fill="#6a9eff"/>
+                <circle cx="227" cy="18"  r="3.5"   fill="#6a9eff"/>
+                <line x1="227" y1="18" x2="227" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="227" y="142" fill="#555" font-size="9" text-anchor="middle">5,000골드 → 상한 10점</text>
+                </svg>
+            </div>
+        
+            <div class="var-formula-box">
+                <div style="color:#777; font-size:0.82rem; margin-bottom:6px;">⚠ 예외: 25분 전에 끝난 경기</div>
+                <div style="color:#c0c0c0; font-size:0.9rem; line-height:1.8;">
+                경기가 25분 이전에 끝나면 25분 데이터가 존재하지 않습니다.<br>
+                이 경우 <strong style="color:#e0e0e0">최종 골드 격차 점수 × 1.5</strong>로 대신 계산합니다.<br>
+                <span style="color:#666; font-size:0.83rem;">(이 때도 최대 10점)</span>
+                </div>
+            </div>
+
+            </div>
+        
+            <!-- ── 패널 4: 시간 가중치 ── -->
+            <div class="var-panel" id="vpanel-3">
+            <div class="var-panel-title">
+                시간 가중치
+                <span class="badge green">0.5 ~ 1.0</span>
+            </div>
+        
+            <p class="var-panel-desc">
+                <strong style="color:#e0e0e0">경기 시간</strong>에 따라 세 점수의 합에 곱해지는 보정값입니다.
+                짧은 경기의 우세는 그대로 반영하고,
+                긴 경기의 전투력은 50점 방향으로 압축합니다.
+            </p>
+        
+            <div class="var-formula-box">
+                <table style="width:100%; font-size:0.9rem; border-collapse:collapse;">
+                <tr>
+                    <td style="color:#888; padding:5px 0; width:44%">20분 이하</td>
+                    <td style="color:#6adf8a; font-weight:700;">× 1.0
+                    <span style="color:#555; font-size:0.82rem; font-weight:400;">(점수 차이 그대로)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color:#888; padding:5px 0;">20분 ~ 50분</td>
+                    <td style="color:#c8deff; font-weight:700;">× 선형 감소
+                    <span style="color:#555; font-size:0.82rem; font-weight:400;">(1.0 → 0.5)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color:#888; padding:5px 0;">50분 이상</td>
+                    <td style="color:#ff9f6a; font-weight:700;">× 0.5
+                    <span style="color:#555; font-size:0.82rem; font-weight:400;">(점수 차이 절반으로 압축)</span>
+                    </td>
+                </tr>
+                </table>
+                <hr class="var-divider">
+                <div class="formula-note">20분 초과 50분 미만: 가중치 = 1.0 − (경기 시간(분) − 20) ÷ 60</div>
+            </div>
+        
+            <div class="var-graph-wrap">
+                <svg viewBox="0 0 420 200" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <line x1="54" y1="8" x2="54" y2="158" stroke="#2a2a2a" stroke-width="1"></line>
+                <line x1="54" y1="148" x2="400" y2="148" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="3,3"></line>
+                <line x1="54" y1="83" x2="400" y2="83" stroke="#1e1e1e" stroke-width="1" stroke-dasharray="4,3"></line>
+                <text x="46" y="22" fill="#6adf8a" font-size="11" text-anchor="end">1.0</text>
+                <text x="46" y="87" fill="#555" font-size="11" text-anchor="end">0.75</text>
+                <text x="46" y="152" fill="#ff9f6a" font-size="11" text-anchor="end">0.5</text>
+                <text x="14" y="83" fill="#555" font-size="10" text-anchor="middle" transform="rotate(-90,14,83)">가중치</text>
+                <text x="123" y="164" fill="#555" font-size="10" text-anchor="middle">20분</text>
+                <text x="331" y="164" fill="#555" font-size="10" text-anchor="middle">50분</text>
+                <text x="227" y="180" fill="#555" font-size="10" text-anchor="middle">경기 시간</text>
+                <!-- 구간 1: 1.0 수평 -->
+                <line x1="54" y1="18" x2="123" y2="18" stroke="#6adf8a" stroke-width="2.5"></line>
+                <!-- 구간 2: 선형 하강 20분→50분 -->
+                <line x1="123" y1="18" x2="331" y2="148" stroke="#c8deff" stroke-width="2.5"></line>
+                <!-- 구간 3: 0.5 수평 -->
+                <line x1="331" y1="148" x2="400" y2="148" stroke="#ff9f6a" stroke-width="2.5"></line>
+                <line x1="123" y1="18" x2="123" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="3,3"></line>
+                <line x1="331" y1="148" x2="331" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="3,3"></line>
+                <circle cx="123" cy="18" r="4" fill="#6adf8a"></circle>
+                <circle cx="331" cy="148" r="4" fill="#ff9f6a"></circle>
+                <rect x="57" y="24" width="63" height="13" rx="3" fill="#1a3a1a66"></rect>
+                <text x="85" y="34" fill="#6adf8a" font-size="9" text-anchor="middle">× 1.0</text>
+                <rect x="190" y="66" width="57" height="13" rx="3" fill="#1a2a3a66"></rect>
+                <text x="218" y="76" fill="#c8deff" font-size="9" text-anchor="middle">선형 감소</text>
+                <rect x="336" y="128" width="64" height="13" rx="3" fill="#3a1a0a66"></rect>
+                <text x="363" y="138" fill="#ff9f6a" font-size="9" text-anchor="middle">× 0.5</text>
+                </svg>
+            </div>
+
+        
+            <div class="var-formula-box">
+                <div style="color:#777; font-size:0.82rem; margin-bottom:8px;">[예시] 같은 우세(세 점수 합 = 30점)일 때 경기 시간별 이긴팀 전투력</div>
+                <table class="var-example-table">
+                <thead>
+                    <tr><th>경기 시간</th><th>가중치</th><th>이긴팀 전투력</th><th>진팀 전투력</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>26:00</td><td>0.90</td>
+                    <td class="score">77점</td><td>23점</td>
+                    </tr>
+                    <tr>
+                    <td>35:00</td><td>0.75</td>
+                    <td class="score">73점</td><td>27점</td>
+                    </tr>
+                    <tr>
+                    <td>44:00</td><td>0.60</td>
+                    <td class="score">68점</td><td>32점</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        
+            </div>
+        
+        </div>
+        </div>
+
+
+    </section>
+    <footer class="footer">
+        <p>2024~2026 경기 데이터 출처 : <a href="https://oracleselixir.com" target="_blank">Oracle's Elixir</a></p>
+    </footer>  
+  </main>
+<script>
+  function switchVarTab(index) {
+    document.querySelectorAll('.var-tab-btn').forEach((b, i) =>
+      b.classList.toggle('active', i === index));
+    document.querySelectorAll('.var-panel').forEach((p, i) =>
+      p.classList.toggle('active', i === index));
+  }
+ 
+  /* ── 히트맵 (지역 장악력) ── */
+  (function() {
+    const svg = document.getElementById('regional-heatmap');
+    if (!svg) return;
+    const ns = 'http://www.w3.org/2000/svg';
+    const CELL = 24, PAD_L = 46, PAD_T = 14, MAX_T = 13, N = MAX_T + 1;
+    const W = PAD_L + N * CELL + 22;
+    const H = PAD_T + N * CELL + 46;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+ 
+    function score(w, l) {
+      const denom = (w + l - 2) || 1;
+      return Math.max(0, (w - l - 2) / denom * 20);
+    }
+    function cellFill(s) {
+      const t = Math.min(s / 20, 1);
+      return `rgb(${Math.round(30+t*(24-30))},${Math.round(30+t*(95-30))},${Math.round(30+t*(165-30))})`;
+    }
+    function el(tag, attrs) {
+      const e = document.createElementNS(ns, tag);
+      Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k, v));
+      return e;
+    }
+    function tx(content, attrs) {
+      const e = el('text', attrs); e.textContent = content; return e;
+    }
+ 
+    const g = el('g', {});
+    for (let l = 0; l <= MAX_T; l++) {
+      for (let w = 0; w <= MAX_T; w++) {
+        const cx = PAD_L + w * CELL;
+        const cy = PAD_T + (MAX_T - l) * CELL;
+        const invalid = w <= l;
+        const s = invalid ? 0 : score(w, l);
+        g.appendChild(el('rect', {
+          x:cx, y:cy, width:CELL-1, height:CELL-1, rx:2,
+          fill: invalid ? '#161616' : cellFill(s),
+          stroke:'rgba(255,255,255,0.04)', 'stroke-width':'0.5'
+        }));
+        if (!invalid && s >= 1) {
+          g.appendChild(tx(s.toFixed(0), {
+            x: cx+CELL/2-0.5, y: cy+CELL/2-0.5,
+            'text-anchor':'middle', 'dominant-baseline':'central',
+            'font-size':'9',
+            'font-family':"'Pretendard','Apple SD Gothic Neo',sans-serif",
+            fill: s > 10 ? '#b5d4f4' : '#555'
+          }));
+        }
+      }
+    }
+    svg.appendChild(g);
+ 
+    for (let w = 0; w <= MAX_T; w++) {
+      svg.appendChild(tx(w, {
+        x: PAD_L+w*CELL+CELL/2-0.5, y: PAD_T+N*CELL+13,
+        'text-anchor':'middle', 'font-size':'10',
+        'font-family':"'Pretendard',sans-serif", fill:'#555'
+      }));
+    }
+    for (let l = 0; l <= MAX_T; l++) {
+      svg.appendChild(tx(l, {
+        x: PAD_L-10, y: PAD_T+(MAX_T-l)*CELL+CELL/2-0.5,
+        'text-anchor':'middle', 'dominant-baseline':'central', 'font-size':'10',
+        'font-family':"'Pretendard',sans-serif", fill:'#555'
+      }));
+    }
+    svg.appendChild(tx('이긴팀 타워', {
+      x: PAD_L+N*CELL/2, y: PAD_T+N*CELL+32,
+      'text-anchor':'middle', 'font-size':'10',
+      'font-family':"'Pretendard',sans-serif", fill:'#666'
+    }));
+    svg.appendChild(tx('진팀 타워', {
+      x:10, y: PAD_T+N*CELL/2,
+      'text-anchor':'middle', 'dominant-baseline':'central', 'font-size':'10',
+      'font-family':"'Pretendard',sans-serif", fill:'#666',
+      transform:`rotate(-90,10,${PAD_T+N*CELL/2})`
+    }));
+ 
+    let d = '';
+    for (let i = 0; i <= MAX_T; i++) {
+      d += `${i===0?'M':'L'} ${PAD_L+i*CELL} ${PAD_T+(MAX_T-i)*CELL} `;
+    }
+    svg.appendChild(el('path', {
+      d, fill:'none',
+      stroke:'rgba(255,255,255,0.12)', 'stroke-width':'1', 'stroke-dasharray':'3 3'
+    }));
+  })();
+</script>
+</body>
+</html>

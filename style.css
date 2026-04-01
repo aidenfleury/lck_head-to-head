@@ -173,3 +173,136 @@ select:focus {
 .footer a:hover {
   color: #888;
 }
+
+.set-row {
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.set-name-cell {
+  width: 34%;
+  padding: 12px 4px; /* 위아래 여백을 넉넉히 주어 텍스트 공간 확보 */
+  color: #888;
+  font-size: 0.80rem;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.set-bar-cell {
+  width: 66%;
+  padding: 0 4px 0 0;
+  vertical-align: middle;
+}
+
+.battle-row {
+  min-height: 28px;
+  width: 60%;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.battle-track {
+  position: relative;
+  height: 18px;
+  overflow: visible;
+}
+
+.battle-score {
+  font-size: 0.75rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.marker-score-win {
+  color: #999;
+}
+
+.marker-score-loss {
+  color: #999;
+}
+
+.marker-score-other {
+  color: #999;
+}
+
+.battle-base {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  background: #5e5e5e;
+  border-radius: 999px;
+}
+
+.battle-fill {
+  position: absolute;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  background: #b1b1b1;
+  border-radius: 999px;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 20;
+  line-height: 1;
+}
+
+/* 우리팀 승리 → 왼쪽으로 diverge */
+.battle-track.left .battle-fill {
+  left: calc(50% - var(--delta));
+  width: var(--delta);
+}
+
+.battle-track.left .battle-end {
+  left: calc(50% - var(--delta));
+}
+
+/* 상대팀 승리 → 오른쪽으로 diverge */
+.battle-track.right .battle-fill {
+  left: 50%;
+  width: var(--delta);
+}
+
+.battle-track.right .battle-end {
+  left: calc(50% + var(--delta));
+}
+
+/* 50:50 */
+.battle-track.tie .battle-fill {
+  left: 50%;
+  width: 0;
+}
+
+.battle-track.tie .battle-end {
+  left: 50%;
+}
+
+.set-midline {
+  position: absolute;
+  top: 1.5px;
+  bottom: 1.5px;
+  left: 50%;
+  width: 3px;
+  border-left: 3px solid #5E5E5E;
+  transform: translateX(-1.5px);
+  z-index: 2;
+}
+
+.var-insight {
+  display:flex; gap:10px; align-items:flex-start; margin-bottom: 20px;
+  background:#141414; border:1px solid #222; border-radius:8px; padding:12px 14px;
+}
+.var-insight .icon { font-size:1rem; margin-top:1px; flex-shrink:0; }
+.var-insight p { font-size:0.88rem; color:#999; line-height:1.75; margin:0; word-break:keep-all; }
+.var-insight p strong { color:#c8c8c8; }
