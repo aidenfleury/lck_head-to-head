@@ -12,7 +12,11 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 48px 16px;
+  padding: 24px 16px;
+}
+
+@media (min-width: 560px) {
+  body { padding: 48px 16px; }
 }
 
 /* ── Container ── */
@@ -199,7 +203,7 @@ select:focus {
   width: 80%;
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) 32px;
+  grid-template-columns: 24px minmax(0, 1fr) 24px;
   align-items: center;
   column-gap: 4px;
 }
