@@ -196,7 +196,7 @@ select:focus {
 
 .battle-row {
   min-height: 28px;
-  width: 60%;
+  width: 80%;
   margin-inline: auto;
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr) 32px;
